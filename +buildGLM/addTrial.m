@@ -25,7 +25,7 @@ for kVar = 1:numel(varnames)
         case 'value'
             % no restrictions on what values can be!
         case 'spike train'
-            if min(trial.(vname)) < 0 || max(trial.(vname)) > trial.duration
+            if ~isempty(trial.(vname)) && (min(trial.(vname)) < 0 || max(trial.(vname)) > trial.duration)
                 error('Spike timing out of bound 0 <= [%f, %f] <= %f',min(trial.(vname)), max(trial.(vname)), trial.duration);
             end
         otherwise
